@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>This is a practice project</h1>
+
+    {{error}}
+
+    <form action="{% url 'downloadLink' %}" method="get">
+        {% csrf_token %}
+        <input type="text" name="request_url" id="request_url" placeholder="Enter URL here">
+        <br>
+        <button type="submit">Get the download link</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download</title>
+</head>
+<body>
+    <h1>Here is your download link</h1>
+    <img src="{{ meta_data.thumbnail_url }}" alt="">
+    <form action="" method="get">
+        <br>
+        <label for="title">Title: </label>
+        <input type="text" name="title" id="title" value="{{ meta_data.title }}" disabled><br>
+
+        <label for="rating">Rating: </label>
+        <input type="text" name="title" id="title" value="{{ meta_data.rating }}" disabled><br>
+
+        <label for="rating">Author: </label>
+        <input type="text" name="rating" id="rating" value="{{ meta_data.rating }}" disabled><br>
+
+        <label for="age_restricted">Age retricted: </label>
+        <input type="checkbox" name="age_restricted" id="age_restricted" disabled {% if meta_data.age_restricted %} checked {% endif %}><br>
+
+        <label for="rating">Length(in sec): </label>
+        <input type="text" name="length" id="length" value="{{ meta_data.length }}" disabled><br>
+
+        
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Resolution</th>
+                <th scope="col"> Progressive</th>
+                <th scope="col">Download Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in rsl %}
+            <tr>
+                <td>{{i.resolution}}</td>
+                <td>{% if i.Progressive %} Yes {% else %} No {% endif %}</td>
+                <td>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="i_tag" value = "{{ i.itag }}">
+                        <button type="submit">Download</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

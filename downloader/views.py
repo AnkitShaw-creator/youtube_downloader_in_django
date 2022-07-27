@@ -27,7 +27,7 @@ def downloadLink(request):
     video_meta_data['length']= yt.length
     
     if request.method == 'GET':
-        return render(request, 'downloader/download.html', {'meta_data': video_meta_data, 'rsl': res,})
+        return render(request, 'downloader/download.html', {'meta_data': video_meta_data,'rsl': res})
 
     if request.method == 'POST':
         ys = yt.streams.get_by_itag(int(request.POST['i_tag']))
